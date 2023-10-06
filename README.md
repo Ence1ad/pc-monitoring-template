@@ -12,11 +12,15 @@ Template for monitoring PC
    ```bash 
    cd pc-monitoring-template 
    ```
-3. For starting containers use docker compose command:
+3. Create dir for metric data:
+   ```bash
+   mkdir "metrics_containers_data"
+   ```
+4. For starting containers use docker compose command:
    ```bash
    docker compose -f docker-compose.yml up -d
    ```
-4. For stop and delete containers use the command:
+5. For stop and delete containers use the command:
     ```bash
    docker compose -f docker-compose.yml down -v
    ```
