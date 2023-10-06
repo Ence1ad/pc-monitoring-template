@@ -1,0 +1,46 @@
+# https://prometheus.io/docs/prometheus/latest/configuration/configuration/
+
+# my global config
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+    monitor: 'codelab-monitor'
+    environment: 'production'
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+   - 'rules.yml'
+  # - "second.rules"
+
+# Alerting specifies settings related to the Alertmanager
+alerting:
+  alertmanagers:
+    - static_configs:
+      - targets: ['alertmanager:9093']
+
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: prometheus
+
+      # metrics_path defaults to '/metrics'
+      # scheme defaults to 'http'.
+
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['localhost:9090']
+  - job_name: 'node'
+    scrape_interval: 15s
+    static_configs:
+      - targets: [ 'node-exporter:9100' ]
+
+#If you use remote grafana
+#remote_write:
+#  - url: '<Your Prometheus remote_write endpoint>'
+#    basic_auth:
+#      username: '<Your Grafana Username>'
+#      password: '<Your Grafana API key>'
