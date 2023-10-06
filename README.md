@@ -24,3 +24,14 @@ Template for monitoring PC
     ```bash
    docker compose -f docker-compose.yml down -v
    ```
+6. To receive an alert notification from alertmanager, set up an email notification configs. Open the alertmanager.yml and enter your email credentials:
+   ```yml
+       email_configs:
+        - to: '<login>gmail.com' # Enter the gmail login that will receive alert notifications
+          from: '<login>@gmail.com' # Enter the gmail login that will send alert notifications
+          smarthost: smtp.gmail.com:587
+          auth_username: '<login>@gmail.com' # Enter the gmail login that will send alert notifications
+          auth_identity: '<login>@gmail.com' # Enter the gmail login that will send alert notifications
+          auth_password: 'google-app-password' # if you are using gmail create google app password -> https://support.google.com/accounts/answer/185833?hl=en
+          send_resolved: true
+   ```

@@ -12,10 +12,10 @@ route:
 receivers:
   - name: 'gmail-notifications'
     email_configs:
-      - to: '@<login>gmail.com'
+      - to: '<login>gmail.com'
         from: '<login>@gmail.com'
         smarthost: smtp.gmail.com:587
         auth_username: '<login>@gmail.com'
         auth_identity: '<login>@gmail.com'
-        auth_password: 'google-app-password' # example -> 'uiptpkzynxujrenb'
+        auth_password: 'google-app-password' # if you are using gmail please check doc -> https://support.google.com/accounts/answer/185833?hl=en
         send_resolved: true
